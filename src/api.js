@@ -2,9 +2,21 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://backend-2-vq6j.onrender.com/api", // ✅ Deployed backend
+  baseURL: "https://backend-2-vq6j.onrender.com/api", // ✅ deployed backend
 });
 
+// --- Auth ---
+export const login = async (credentials) => {
+  const res = await API.post("/auth/login", credentials);
+  return res.data;
+};
+
+export const signup = async (userData) => {
+  const res = await API.post("/auth/signup", userData);
+  return res.data;
+};
+
+// --- Attendance & Face ---
 export const saveSample = async (file) => {
   const formData = new FormData();
   formData.append("file", file);
