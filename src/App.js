@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./Login";
 import Signup from "./Signup";
 import Dashboard from "./Dashboard";
@@ -22,8 +22,11 @@ function App() {
           <Route path="/attendance-list" element={<AttendanceList />} />
           <Route path="/scanner" element={<RealTimeScanner />} />
 
-          {/* 🔹 New: Face Sample Collector */}
+          {/* 🔹 Face Sample Collector */}
           <Route path="/add-samples" element={<FaceSampleCollector />} />
+
+          {/* 🔹 Handle unknown routes */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
     </Router>
