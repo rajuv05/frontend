@@ -1,0 +1,105 @@
+/* Root dark gradient */
+.dashboard-root {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #0a0f1e, #000000);
+  font-family: "Segoe UI", sans-serif;
+  padding: 2rem;
+}
+
+/* Main card with neon glow */
+.dashboard-card {
+  background: rgba(10, 15, 30, 0.9);
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 20px rgba(0, 150, 255, 0.25);
+  border: 1px solid rgba(0, 150, 255, 0.3);
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+}
+
+/* Headings */
+.welcome-text {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #00aaff;
+  text-shadow: 0 0 8px rgba(0, 170, 255, 0.7);
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #66ccff;
+  margin-bottom: 2rem;
+}
+
+/* Actions grid */
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Action buttons */
+.action-btn {
+  background: rgba(0, 30, 60, 0.8);
+  border: 1px solid rgba(0, 150, 255, 0.4);
+  border-radius: 1rem;
+  padding: 1.2rem;
+  color: #cceeff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 12px rgba(0, 150, 255, 0.2);
+}
+
+.action-btn:hover {
+  background: rgba(0, 100, 180, 0.2);
+  box-shadow: 0 0 18px rgba(0, 170, 255, 0.5);
+  transform: translateY(-3px);
+}
+
+.action-icon {
+  width: 2rem;
+  height: 2rem;
+  color: #00aaff;
+  filter: drop-shadow(0 0 6px rgba(0, 170, 255, 0.6));
+}
+
+/* Logout button */
+.logout-container {
+  text-align: center;
+}
+
+.logout-btn {
+  background: linear-gradient(to right, #ff0044, #cc0033);
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 0.9rem 2rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 12px rgba(255, 50, 80, 0.4);
+}
+
+.logout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(255, 50, 80, 0.6);
+}
+
+.logout-icon {
+  width: 1.4rem;
+  height: 1.4rem;
+}
