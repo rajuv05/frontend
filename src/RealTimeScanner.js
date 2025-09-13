@@ -8,10 +8,10 @@ export default function RealTimeScanner() {
   const canvasRef = useRef(null);
   const [message, setMessage] = useState("Waiting for scan...");
   const [faces, setFaces] = useState([]);
-  const [glowType, setGlowType] = useState(""); // "", "success", "fail"
+  const [glowType, setGlowType] = useState("");
   const [isScanning, setIsScanning] = useState(true);
 
-  /** Convert a webcam screenshot (dataURL) to Blob */
+  // Convert screenshot to Blob
   const dataURLtoBlob = (dataURL) => {
     const [meta, base64] = dataURL.split(",");
     const mime = meta.match(/:(.*?);/)[1];
@@ -21,13 +21,13 @@ export default function RealTimeScanner() {
     return new Blob([arr], { type: mime });
   };
 
-  /** Glow animation helper */
+  // Glow effect
   const triggerGlow = (type) => {
     setGlowType(type);
     setTimeout(() => setGlowType(""), 2000);
   };
 
-  /** Send frame to backend */
+  // Send frame to backend
   const captureAndSend = useCallback(async () => {
     if (!webcamRef.current) return;
     const imageSrc = webcamRef.current.getScreenshot();
@@ -39,7 +39,7 @@ export default function RealTimeScanner() {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:8080/api/face/recognize",
+        "https://backend-2-vq6j.onrender.com/api/face/recognize", // ✅ deployed backend
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -64,18 +64,18 @@ export default function RealTimeScanner() {
     }
   }, []);
 
-  /** Smooth scanning loop using requestAnimationFrame */
+  // Scanning loop
   useEffect(() => {
     let timer;
     const scan = () => {
       captureAndSend();
-      timer = setTimeout(() => requestAnimationFrame(scan), 3000); // every 3s
+      timer = setTimeout(() => requestAnimationFrame(scan), 3000);
     };
     if (isScanning) scan();
     return () => clearTimeout(timer);
   }, [captureAndSend, isScanning]);
 
-  /** Draw detection boxes */
+  // Draw boxes
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
@@ -84,7 +84,7 @@ export default function RealTimeScanner() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     faces.forEach((face) => {
-      const pad = 4; // tighten box slightly
+      const pad = 4;
       ctx.beginPath();
       ctx.lineWidth = 3;
       ctx.strokeStyle = face.identity !== "Unknown" ? "lime" : "red";
@@ -96,7 +96,6 @@ export default function RealTimeScanner() {
       );
       ctx.stroke();
 
-      // Gradient label background
       const gradient = ctx.createLinearGradient(0, 0, 120, 0);
       gradient.addColorStop(0, "#ffffff");
       gradient.addColorStop(1, "#001f54");

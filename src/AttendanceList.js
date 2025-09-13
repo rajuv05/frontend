@@ -7,7 +7,7 @@ const AttendanceList = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/attendance/list") // ✅ fixed endpoint
+      .get("https://backend-2-vq6j.onrender.com/api/attendance/list") // ✅ fixed endpoint
       .then((res) => setRecords(res.data))
       .catch((err) => console.error("❌ Error fetching attendance:", err));
   }, []);

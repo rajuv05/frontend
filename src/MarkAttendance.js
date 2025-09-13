@@ -20,9 +20,11 @@ function MarkAttendance() {
     formData.append("file", file);
 
     try {
-      const res = await axios.post("http://localhost:8080/api/face/detect", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const res = await axios.post(
+        "https://backend-2-vq6j.onrender.com/api/face/detect",
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
       setMessage(`✅ Faces detected: ${res.data.facesDetected}`);
       setProcessedFile(res.data.processedFile);
     } catch (err) {
@@ -36,10 +38,9 @@ function MarkAttendance() {
       <input type="file" onChange={handleFileChange} />
       <button onClick={handleUpload}>Upload & Detect</button>
       <p>{message}</p>
-
       {processedFile && (
         <img
-          src={`http://localhost:8080/${processedFile}`}
+          src={`https://backend-2-vq6j.onrender.com/${processedFile}`}
           alt="Detected Faces"
           width="400"
         />

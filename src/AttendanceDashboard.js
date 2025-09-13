@@ -15,7 +15,7 @@ const AttendanceDashboard = () => {
   // 🔹 Fetch all students
   const fetchStudents = () => {
     axios
-      .get("http://localhost:8080/api/attendance/students")
+      .get("https://backend-2-vq6j.onrender.com/api/attendance/students")
       .then((res) => setStudents(res.data))
       .catch((err) => console.error(err));
   };
